@@ -1,0 +1,23 @@
+<odoo>
+
+    <record id="view_library_return_log_list" model="ir.ui.view">
+        <field name="name">library.return.log.list</field>
+        <field name="model">library.return.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="return_date"/>
+                <field name="member_id"/>
+                <field name="book_id"/>
+                <field name="late_days"/>
+                <field name="fine_amount"/>
+            </list>
+        </field>
+    </record>
+ 
+    <record id="action_library_return_log" model="ir.actions.act_window">
+        <field name="name">Return History</field>
+        <field name="res_model">library.return.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

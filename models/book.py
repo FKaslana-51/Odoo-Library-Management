@@ -53,6 +53,32 @@ class LibraryBook(models.Model):
         string='Borrowing Lines'
     )
 
+    reservation_ids = fields.One2many(
+    'library.reservation',
+    'book_id'
+    )
+
+    reservation_count = fields.Integer(
+        compute='_compute_reservation_count'
+    )
+
+    def _compute_reservation_count(self):
+        for record in self:
+            record.reservation_count = len(
+                record.reservation_ids.filtered(
+                    lambda r: r.state in ['waiting', 'notified']
+                )
+            )
+            
+    def action_view_reservations(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Reservations',
+            'view_mode': 'list,form',
+            'res_model': 'library.reservation',
+            'domain': [('book_id', '=', self.id)],
+        }
+
     # =====================================
     # COMPUTE METHODS
     # =====================================

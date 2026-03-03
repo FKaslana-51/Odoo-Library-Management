@@ -26,4 +26,15 @@
               sequence="3"
               action="action_library_borrowing"/>
 
+    <menuitem id="menu_library_return_log"
+          name="Return History"
+          parent="menu_library_root"
+          action="action_library_return_log"
+          sequence="50"/>
+    <record id="action_library_return_log" model="ir.actions.act_window">
+        <field name="name">Return History</field>
+        <field name="res_model">library.return.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
 </odoo>

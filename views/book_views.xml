@@ -21,6 +21,15 @@
         <field name="model">library.book</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_view_reservations"
+                        type="object"
+                        string="Reservations"
+                        class="oe_stat_button"
+                        icon="fa-clock">
+                        <field name="reservation_count" widget="statinfo"/>
+                    </button>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>

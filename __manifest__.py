@@ -22,8 +22,10 @@
     'views/book_views.xml',
     'views/member_views.xml',
     'views/borrowing_views.xml',
+    'views/reservation_views.xml',
+    'views/return_log_views.xml',
 
-    # MENU LAST
+   # MENU LAST
     'views/menu.xml',
 ],
     'installable': True,

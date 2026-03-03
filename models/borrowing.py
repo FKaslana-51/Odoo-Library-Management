@@ -2,7 +2,6 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from datetime import date
 
-
 class LibraryBorrowing(models.Model):
     _name = 'library.borrowing'
     _description = 'Library Borrowing'
@@ -102,8 +101,8 @@ class LibraryBorrowing(models.Model):
     def action_confirm(self):
         for record in self:
 
-            if record.member_id.status != 'active':
-                raise ValidationError("Member is blocked.")
+            if record.member_id.status != 'active' or record.member_id.is_expired:
+                raise ValidationError("Member is blocked or membership has expired.")
 
             if not record.line_ids:
                 raise ValidationError("Add at least one book.")
@@ -113,20 +112,43 @@ class LibraryBorrowing(models.Model):
                     raise ValidationError(
                         f"Not enough stock for book: {line.book_id.name}"
                     )
-
             record.state = 'confirmed'
 
     def action_return(self):
         for record in self:
-            record.return_date = date.today()
+            record.state = 'returned'
+            record.return_date = fields.Date.today()
 
-            if record.return_date > record.due_date:
-                record.state = 'late'
-            else:
-                record.state = 'returned'
+            for line in record.line_ids:
+
+                # ==== RETURN LOG ====
+                today = fields.Date.today()
+
+                late_days = 0
+                if record.due_date and record.due_date < today:
+                    late_days = (today - record.due_date).days
+
+                self.env['library.return.log'].create({
+                    'borrowing_id': record.id,
+                    'member_id': record.member_id.id,
+                    'book_id': line.book_id.id,
+                    'return_date': today,
+                    'late_days': late_days,
+                    'fine_amount': record.fine_amount,
+                })
+
+                # ==== RESERVATION CHECK ====
+                reservation = self.env['library.reservation'].search([
+                    ('book_id', '=', line.book_id.id),
+                    ('state', '=', 'waiting')
+                ], order='reservation_date asc', limit=1)
+
+                if reservation:
+                    reservation.write({'state': 'notified'})
 
     def action_set_draft(self):
-        self.state = 'draft'
+        for record in self:
+            record.state = 'draft'
 
     # ======================================
     # CRON METHOD

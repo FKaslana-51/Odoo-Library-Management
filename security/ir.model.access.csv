@@ -4,3 +4,5 @@ access_library_book,access_library_book,model_library_book,,1,1,1,1
 access_library_member,access_library_member,model_library_member,,1,1,1,1
 access_library_borrowing,access_library_borrowing,model_library_borrowing,,1,1,1,1
 access_library_borrowing_line,access_library_borrowing_line,model_library_borrowing_line,,1,1,1,1
+access_library_return_log,access_library_return_log,model_library_return_log,base.group_user,1,1,1,1
+access_library_reservation,access_library_reservation,model_library_reservation,base.group_user,1,1,1,1
