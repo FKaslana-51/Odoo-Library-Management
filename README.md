@@ -90,10 +90,7 @@ Place this module inside:
 Then:
 1. Go to Apps
 2. Click "Update Apps List"
-3. Search for:
-      ```bash
-  Library Advanced Management
-   ```
+3. Search for: Library Advanced Management
 4. Click Install
 
 ## 🏗 Module Structure
