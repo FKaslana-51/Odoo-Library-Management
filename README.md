@@ -13,7 +13,35 @@ Advanced Library Management System built using Odoo 19 and PostgreSQL 15.
 - Windows 10 / 11
 - Python (bundled with Odoo)
 - PostgreSQL 15
-- Odoo 19 Community
+- Odoo 19 
+
+## 🏗 Module Structure
+   ```bash
+     library_advanced/
+   │
+   ├── __init__.py
+   ├── __manifest__.py
+   │
+   ├── models/
+   │   ├── book_category.py
+   │   ├── book.py
+   │   ├── member.py
+   │   ├── borrowing.py
+   │   ├── borrowing_line.py
+   │
+   ├── views/
+   │   ├── book_views.xml
+   │   ├── member_views.xml
+   │   ├── borrowing_views.xml
+   │   ├── menu.xml
+   │
+   ├── security/
+   │   └── ir.model.access.csv
+   │
+   └── data/
+       ├── sequence.xml
+       └── cron.xml
+   ```
 
 ## 🔧 1. Install PostgreSQL 15
 ### Step 1 — Download PostgreSQL 15
@@ -92,31 +120,3 @@ Then:
 2. Click "Update Apps List"
 3. Search for: "Library Advanced Management"
 4. Click Install
-
-## 🏗 Module Structure
-   ```bash
-     library_advanced/
-   │
-   ├── __init__.py
-   ├── __manifest__.py
-   │
-   ├── models/
-   │   ├── book_category.py
-   │   ├── book.py
-   │   ├── member.py
-   │   ├── borrowing.py
-   │   ├── borrowing_line.py
-   │
-   ├── views/
-   │   ├── book_views.xml
-   │   ├── member_views.xml
-   │   ├── borrowing_views.xml
-   │   ├── menu.xml
-   │
-   ├── security/
-   │   └── ir.model.access.csv
-   │
-   └── data/
-       ├── sequence.xml
-       └── cron.xml
-   ```
