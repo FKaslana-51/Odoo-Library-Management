@@ -1,0 +1,25 @@
+<odoo>
+
+    <!-- ========================= -->
+    <!-- MEMBER SEQUENCE -->
+    <!-- ========================= -->
+    <record id="seq_library_member" model="ir.sequence">
+        <field name="name">Library Member Sequence</field>
+        <field name="code">library.member.sequence</field>
+        <field name="prefix">MEM/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- ========================= -->
+    <!-- BORROWING SEQUENCE -->
+    <!-- ========================= -->
+    <record id="seq_library_borrowing" model="ir.sequence">
+        <field name="name">Library Borrowing Sequence</field>
+        <field name="code">library.borrowing.sequence</field>
+        <field name="prefix">BOR/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>
